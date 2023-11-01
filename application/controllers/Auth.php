@@ -158,10 +158,10 @@ class Auth extends CI_Controller {
 		$this->load->library('Recaptcha');
 
 		// siapkan data recaptcha
-		$this->data['captcha'] = $this->recaptcha->getWidget();
-		$this->data['script_captcha'] = $this->recaptcha->getScriptTag();
-		$recaptcha 	= $this->input->post('g-recaptcha-response');
-    $response 	= $this->recaptcha->verifyResponse($recaptcha);
+	// 	$this->data['captcha'] = $this->recaptcha->getWidget();
+	// 	$this->data['script_captcha'] = $this->recaptcha->getScriptTag();
+	// 	$recaptcha 	= $this->input->post('g-recaptcha-response');
+    // $response 	= $this->recaptcha->verifyResponse($recaptcha);
 
 		//validate form input
 		$this->form_validation->set_rules('identity', 'Identity', 'callback_identity_check');

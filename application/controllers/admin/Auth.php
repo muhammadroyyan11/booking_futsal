@@ -52,8 +52,8 @@ class Auth extends CI_Controller
 		$this->data['script_captcha'] = $this->recaptcha->getScriptTag();
 		$this->data['title'] = $this->lang->line('login_heading');
 
-		$recaptcha = $this->input->post('g-recaptcha-response');
-		$response = $this->recaptcha->verifyResponse($recaptcha);
+		// $recaptcha = $this->input->post('g-recaptcha-response');
+		// $response = $this->recaptcha->verifyResponse($recaptcha);
 
 		// validate form input
 		$this->form_validation->set_rules('identity', str_replace(':', '', $this->lang->line('login_identity_label')), 'required');
