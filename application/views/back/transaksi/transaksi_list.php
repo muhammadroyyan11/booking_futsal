@@ -21,8 +21,8 @@
           <div class="box box-primary">
             <div class="box-body">
               <?php echo $this->session->userdata('message') <> '' ? $this->session->userdata('message') : ''; ?>
-              <div class="table-responsive no-padding">
-                <table id="datatable" class="table table-striped">
+              <div class="table-responsive">
+                <table id="example1" class="table table-bordered table-striped">
                   <thead>
                     <tr>
                       <th style="text-align: center">No.</th>
@@ -31,37 +31,43 @@
                       <th style="text-align: center">Dibuat</th>
                       <th style="text-align: center">Grand Total</th>
                       <th style="text-align: center">Status</th>
-                      <th style="text-align: center">File</th>
+                      <!-- <th style="text-align: center">File</th> -->
                       <th style="text-align: center">Aksi</th>
                     </tr>
                   </thead>
-                  <?php $no = 1;
-                  foreach ($get_all as $data) { ?>
-                    <tr>
-                      <td style="text-align:center"><?php echo $no++ ?></td>
-                      <td style="text-align:center"><?php echo $data->id_invoice ?></a></td>
-                      <td style="text-align:center"><?php echo $data->name ?></a></td>
-                      <td style="text-align:center"><?php echo tgl_indo($data->created_date) ?></td>
-                      <td style="text-align:center"><?php echo number_format($data->grand_total) ?></a></td>
-                      <td style="text-align:center">
-                        <?php if ($data->status_midtrans == '200') { ?>
-                          <span class="badge bg-success">Success</span>
-                        <?php   } else { ?>
-                          <span class="badge bg-warning">Pending</span>
-                        <?php   } ?>
-                      </td>
-                      <td style="text-align:center">
-                        <?php if ($data->status != '2') { ?>
-                          <a href="<?php echo base_url('admin/transaksi/set_lunas/') . $data->id_trans ?>">
-                            <button name="update" class="btn btn-success"><i class="fa fa-check"></i> Set Lunas</button>
+                  <tbody>
+                    <?php $no = 1;
+                    foreach ($get_all as $data) { ?>
+                      <tr>
+                        <td style="text-align:center"><?php echo $no++ ?></td>
+                        <td style="text-align:center"><?php echo $data->id_invoice ?></a></td>
+                        <td style="text-align:center"><?php echo $data->name ?></a></td>
+                        <td style="text-align:center"><?php echo tgl_indo($data->created_date) ?></td>
+                        <td style="text-align:center"><?php echo number_format($data->grand_total) ?></a></td>
+                        <td style="text-align:center">
+                          <?php if ($data->status_midtrans == '200') { ?>
+                            <span class="badge badge-success" style="background-color: green;">Success</span>
+                          <?php   } elseif ($data->status_midtrans == '201') {?>
+                            <span class="badge bg-warning">Pending</span>
+                          <?php   }  else {?>
+                            <span class="badge bg-danger">Cancel</span>
+                          <?php   } ?>
+                        </td>
+                        <td style="text-align:center">
+                          <?php if ($data->status_midtrans == '201') { ?>
+                            <a href="<?php echo base_url('admin/transaksi/set_lunas/') . $data->id_trans ?>">
+                              <button name="update" class="btn btn-success"><i class="fa fa-check"></i> Set Lunas</button>
+                            </a>
+                          <?php } ?>
+                          <a href="<?php echo base_url('admin/transaksi/detail/') . $data->id_trans ?>">
+                            <button name="update" class="btn btn-primary"><i class="fa fa-search-plus"></i> Detail</button>
                           </a>
-                        <?php } ?>
-                        <a href="<?php echo base_url('admin/transaksi/detail/') . $data->id_trans ?>">
-                          <button name="update" class="btn btn-primary"><i class="fa fa-search-plus"></i> Detail</button>
-                        </a>
-                      </td>
-                    </tr>
-                  <?php } ?>
+                          <a href="<?php echo base_url('admin/transaksi/hapus/') . $data->id_trans ?>">
+                            <button name="hapus" class="btn btn-danger"><i class="fa fa-trash"></i> Hapus</button>
+                          </a>
+                        </td>
+                      </tr>
+                    <?php } ?>
                   </tbody>
                 </table>
               </div>
@@ -74,27 +80,6 @@
   <?php $this->load->view('back/footer') ?>
 </div><!-- ./wrapper -->
 <?php $this->load->view('back/js') ?>
-<!-- DATA TABLES-->
-<link href="<?php echo base_url('assets/plugins/') ?>datatables/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />
-<script src="<?php echo base_url('assets/plugins/') ?>datatables/jquery.dataTables.min.js" type="text/javascript"></script>
-<script src="<?php echo base_url('assets/plugins/') ?>datatables/dataTables.bootstrap.min.js" type="text/javascript"></script>
-<script type="text/javascript">
-  $('#datatable').dataTable({
-    "bPaginate": true,
-    "bLengthChange": true,
-    "bFilter": true,
-    "bSort": true,
-    "bInfo": true,
-    "bAutoWidth": false,
-    "aaSorting": [
-      [0, 'desc']
-    ],
-    "lengthMenu": [
-      [10, 25, 50, 100, 500, 1000, -1],
-      [10, 25, 50, 100, 500, 1000, "Semua"]
-    ]
-  });
-</script>
 </body>
 
 </html>

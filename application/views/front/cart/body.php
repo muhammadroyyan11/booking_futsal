@@ -115,7 +115,7 @@
 	<?php } ?>
 
 	<?php
-	echo "Woyyy " . $customer_data->id_trans;
+	// echo "Woyyy " . $customer_data->id_trans;
 	if (!empty($customer_data->id_trans)) { ?>
 		<div class="row">
 			<div class="col-lg-12">
@@ -126,11 +126,11 @@
 						</button>
 					</a>
 				<?php } ?>
-				<a href="<?php echo base_url() ?>">
+				<!-- <a href="<?php echo base_url() ?>">
 					<button name="hapus" type="button" class="btn btn-primary" aria-label="Left Align" title="Lanjut Belanja">
 						<span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Lanjut Belanja
 					</button>
-				</a>
+				</a> -->
 				<?php if ($cek_keranjang != NULL) { ?>
 					<!-- <button name="checkout" type="button" id="cekData" class="btn btn-success" aria-label="Left Align" title="Checkout">
 									<span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Checkout

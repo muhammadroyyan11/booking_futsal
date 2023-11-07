@@ -206,14 +206,34 @@ class Transaksi extends CI_Controller
   {
     $row = $this->Cart_model->get_by_id($id);
 
-    if ($row)
+    if ($row != NULL)
     {
       $this->db->where('id_trans', $id);
   		$this->db->update('transaksi', array(
-  			'status'			=>	'2',
+  			'status_midtrans'			=>	'200',
   		));
 
       $this->session->set_flashdata('message', '<div class="alert alert-success alert">Transaksi berhasil dinyatakan LUNAS</div>');
+      redirect(site_url('admin/transaksi'));
+    }
+      // Jika data tidak ada
+      else
+      {
+        $this->session->set_flashdata('message', '<div class="alert alert-warning alert">Transaksi tidak ditemukan</div>');
+        redirect(site_url('admin/transaksi'));
+      }
+  }
+
+  public function hapus($id)
+  {
+    $row = $this->Cart_model->get_by_id($id);
+
+    if ($row != NULL)
+    {
+      $this->db->where('id_trans', $id);
+  		$this->db->delete('transaksi');
+
+      $this->session->set_flashdata('message', '<div class="alert alert-success alert">Transaksi berhasil dihapus</div>');
       redirect(site_url('admin/transaksi'));
     }
       // Jika data tidak ada

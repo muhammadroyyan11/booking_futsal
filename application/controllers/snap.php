@@ -127,6 +127,7 @@ class Snap extends CI_Controller
 		$this->base->add('checkout_midtrans', $params);
 
 		$paramsUpdate = [
+			'grand_total'		=> $result['gross_amount'],
 			'status'			=> 1,
 			'status_midtrans'	=> $result['status_code']
 		];

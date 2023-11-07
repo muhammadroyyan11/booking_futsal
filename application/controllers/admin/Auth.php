@@ -48,9 +48,9 @@ class Auth extends CI_Controller
 
 		$this->load->library('Recaptcha');
 
-		$this->data['captcha'] = $this->recaptcha->getWidget();
-		$this->data['script_captcha'] = $this->recaptcha->getScriptTag();
-		$this->data['title'] = $this->lang->line('login_heading');
+		// $this->data['captcha'] = $this->recaptcha->getWidget();
+		// $this->data['script_captcha'] = $this->recaptcha->getScriptTag();
+		// $this->data['title'] = $this->lang->line('login_heading');
 
 		// $recaptcha = $this->input->post('g-recaptcha-response');
 		// $response = $this->recaptcha->verifyResponse($recaptcha);
@@ -58,13 +58,13 @@ class Auth extends CI_Controller
 		// validate form input
 		$this->form_validation->set_rules('identity', str_replace(':', '', $this->lang->line('login_identity_label')), 'required');
 		$this->form_validation->set_rules('password', str_replace(':', '', $this->lang->line('login_password_label')), 'required');
-		$this->form_validation->set_rules('g-recaptcha-response', 'Captcha', 'required');
+		// $this->form_validation->set_rules('g-recaptcha-response', 'Captcha', 'required');
 		$this->form_validation->set_message('required', '{field} mohon diisi');
 
 		// jika form_validation gagal dijalankan dan response recaptcha juga gagal maka akan diarahkan kembali ke halaman login
 		// if ($this->form_validation->run() == FALSE)
 		// {
-		if ($this->form_validation->run() == FALSE || !isset($response['success']) || $response['success'] <> TRUE) {
+		if ($this->form_validation->run() == FALSE) {
 			$this->data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
 
 			$this->data['identity'] = array(

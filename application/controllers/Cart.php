@@ -34,7 +34,7 @@ class Cart extends CI_Controller
 
 	public function index()
 	{
-		$this->data['title'] 										= 'Keranjang Belanja';
+		$this->data['title'] = 'Keranjang Belanja';
 
 		$this->data['tanggal'] = array(
 			'name'        => 'tanggal[]',

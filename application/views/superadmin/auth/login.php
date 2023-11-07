@@ -14,7 +14,6 @@
     <script src="<?php echo base_url()?>assets/template/backend/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
     <!-- Favicon -->
     <link rel="shortcut icon" href="<?php echo base_url('assets/images/fav.png') ?>" />
-    <?php echo $script_captcha; // javascript recaptcha ?>
   </head>
   <body class="login-page">
     <div class="login-box">
@@ -34,7 +33,7 @@
           </div>
           <div class="row">
             <div class="col-lg-12">
-              <p><?php echo $captcha ?></p>
+              <!-- <p><?php echo $captcha ?></p> -->
               <p>Remember Me: <?php echo form_checkbox('remember', '1', FALSE, 'id="remember"');?></p>
               <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
             </div><!-- /.col -->

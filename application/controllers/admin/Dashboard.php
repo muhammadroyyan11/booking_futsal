@@ -1,9 +1,11 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Dashboard extends CI_Controller {
+class Dashboard extends CI_Controller
+{
 
-	public function index(){
+	public function index()
+	{
 		$this->load->model('Album_model');
 		$this->load->model('Cart_model');
 		$this->load->model('Event_model');
@@ -15,15 +17,16 @@ class Dashboard extends CI_Controller {
 
 		$this->load->model('Slider_model');
 
-		if(!$this->ion_auth->logged_in()){redirect('admin/auth/login', 'refresh');}
-		elseif(!$this->ion_auth->is_superadmin() && !$this->ion_auth->is_admin()){redirect(base_url());}
-		else
-		{
-			$this->data = array(
-	      'title' 						=> 'Dashboard',
-		    'total_album' 			=> $this->Album_model->total_rows(),
+		if (!$this->ion_auth->logged_in()) {
+			redirect('admin/auth/login', 'refresh');
+		} elseif (!$this->ion_auth->is_superadmin() && !$this->ion_auth->is_admin()) {
+			redirect(base_url());
+		} else {
+			$data = array(
+				'title' 						=> 'Dashboard',
+				'total_album' 			=> $this->Album_model->total_rows(),
 				'total_event' 			=> $this->Event_model->total_rows(),
-				'total_foto' 				=> $this->Foto_model->total_rows(),
+				'total_foto' 			=> $this->Foto_model->total_rows(),
 				'total_kategori' 		=> $this->Kategori_model->total_rows(),
 				'total_kontak' 			=> $this->Kontak_model->total_rows(),
 				'total_lapangan'		=> $this->Lapangan_model->total_rows(),
@@ -38,8 +41,9 @@ class Dashboard extends CI_Controller {
 				'stats_omset_tahunan' => $this->Cart_model->stats_omset_tahunan(),
 			);
 
-			$this->load->view('back/dashboard',$this->data);
+			// var_dump($data['omset_harian']);
+
+			$this->load->view('back/dashboard', $data);
 		}
 	}
-
 }
