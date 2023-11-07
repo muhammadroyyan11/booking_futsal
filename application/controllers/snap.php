@@ -133,7 +133,22 @@ class Snap extends CI_Controller
 		];
 
 		$this->base->edit('transaksi', $paramsUpdate, ['id_trans' => $post['id_trans']]);
-		
+
+		$count = count($this->input->post('lapangan'));
+		for ($i = 0; $i < $count; $i++) {
+			$data_detail[$i] = array(
+				'id_transdet'   => $this->input->post('id_transdet[' . $i . ']'),
+				'tanggal'       => $this->input->post('tanggal[' . $i . ']'),
+				'jam_mulai'     => $this->input->post('jam_mulai[' . $i . ']'),
+				'durasi'        => $this->input->post('durasi[' . $i . ']'),
+				'harga_jual'    => $this->input->post('harga_jual[' . $i . ']'),
+				'jam_selesai'   => $this->input->post('jam_mulai[' . $i . ']') + $this->input->post('durasi[' . $i . ']') . ":00:00",
+				'total'   		=> $this->input->post('harga_jual[' . $i . ']') * $this->input->post('durasi[' . $i . ']'),
+			);
+		}
+
+		$this->db->update_batch('transaksi_detail', $data_detail, 'id_transdet');
+
 		redirect(base_url());
 	}
 }

@@ -48,10 +48,9 @@
           <div class="col-sm-4 invoice-col">
             Tanggal Pemesanan: <b><?php echo tgl_indo($cart_finished_row->created_date) ?></b><br/>
             Status: <b>
-              <?php if($cart_finished_row->status == '0'){echo "BELUM CHECKOUT";}
-                    elseif($cart_finished_row->status == '1'){echo "BELUM LUNAS";}
-                    elseif($cart_finished_row->status == '2'){echo "SUDAH LUNAS";}
-                    elseif($cart_finished_row->status == '3'){echo "EXPIRED";}
+              <?php if($cart_finished_row->status_midtrans == '201'){echo "BELUM CHECKOUT";}
+                    elseif($cart_finished_row->status_midtrans == '200'){echo "LUNAS";}
+                    else{echo "CANCEL / EXPIRED";}
               ?></b><br/>
           </div><!-- /.col -->
         </div><!-- /.row -->
