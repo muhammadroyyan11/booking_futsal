@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 20, 2021 at 04:33 PM
--- Server version: 10.4.17-MariaDB
--- PHP Version: 7.4.15
+-- Generation Time: Nov 08, 2023 at 04:02 AM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 7.4.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -43,13 +43,9 @@ CREATE TABLE `album` (
 --
 
 INSERT INTO `album` (`id_album`, `nama_album`, `slug_album`, `foto`, `created_by`, `created_at`, `modified_by`, `modified_at`) VALUES
-(1, 'Percobaan', 'percobaan', 'percobaan20180411012221.jpg', 'amperakoding', '2018-04-11 06:14:08', 'amperakoding', '2021-05-17 19:57:25'),
-(2, 'Percobaan ke2', 'percobaan-ke2', 'percobaan-ke220180414141810.jpg', 'amperakoding', '2018-04-11 06:20:52', 'amperakoding', '2021-05-17 19:57:25'),
-(3, 'Coba Lagi', 'coba-lagi', 'coba-lagi20180414141800.jpg', 'amperakoding', '2018-04-11 06:23:01', 'amperakoding', '2021-05-17 19:57:25'),
-(4, 'Lagi coba', 'lagi-coba', 'lagi-coba20180414141618.jpg', 'amperakoding', '2018-04-11 06:23:11', 'amperakoding', '2021-05-17 19:57:25'),
-(5, 'Scenery', 'scenery', 'scenery20180414141646.jpg', 'amperakoding', '2018-04-14 19:16:46', 'amperakoding', '2021-05-17 19:57:28'),
-(6, 'Lake House', 'lake-house', 'lake-house20180414141705.jpg', 'amperakoding', '2018-04-14 19:17:05', 'amperakoding', '2021-05-17 19:57:28'),
-(7, 'House', 'house', 'house20180414141719.jpg', 'amperakoding', '2018-04-14 19:17:19', 'amperakoding', '2021-05-17 19:57:28');
+(8, 'Lapangan Futsal', 'lapangan-futsal', 'lapangan-futsal20231018210639.jpg', 'superadmin', '2023-10-18 21:06:39', NULL, NULL),
+(9, 'Lapangan Badminton', 'lapangan-badminton', 'lapangan-badminton20231018210701.jpg', 'superadmin', '2023-10-18 21:07:01', NULL, NULL),
+(10, 'Tata Tertib', 'tata-tertib', 'tata-tertib20231018210836.jpg', 'superadmin', '2023-10-18 21:08:36', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -74,6 +70,39 @@ INSERT INTO `bank` (`id_bank`, `nama_bank`, `atas_nama`, `norek`, `logo`) VALUES
 (2, 'BRI', 'Microtron', '87873412323', 'bri.png'),
 (3, 'Mandiri', 'Microtron', '778734098', 'mandiri.png'),
 (4, 'BCA', 'Microtron', '998980342487', 'bca.png');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `checkout_midtrans`
+--
+
+CREATE TABLE `checkout_midtrans` (
+  `order_id` varchar(20) NOT NULL,
+  `gross_amount` int(11) DEFAULT NULL,
+  `payment_type` varchar(50) DEFAULT NULL,
+  `transaction_time` varchar(19) DEFAULT NULL,
+  `bank` varchar(30) DEFAULT NULL,
+  `va_number` varchar(100) DEFAULT NULL,
+  `pdf_url` varchar(50) DEFAULT NULL,
+  `status_code` char(3) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `checkout_midtrans`
+--
+
+INSERT INTO `checkout_midtrans` (`order_id`, `gross_amount`, `payment_type`, `transaction_time`, `bank`, `va_number`, `pdf_url`, `status_code`) VALUES
+('1366541010', 36000, 'bank_transfer', '2023-11-01 16:25:42', 'bca', '88623757152', 'https://app.sandbox.midtrans.com/snap/v1/transacti', '201'),
+('1459344933', 36000, 'bank_transfer', '2023-11-01 16:12:12', 'bca', '88623418581', 'https://app.sandbox.midtrans.com/snap/v1/transacti', '201'),
+('184548503', 36000, 'bank_transfer', '2023-11-01 19:48:48', 'bca', '88623831687', 'https://app.sandbox.midtrans.com/snap/v1/transacti', '200'),
+('1918395299', 36000, 'bank_transfer', '2023-11-01 16:26:45', 'bca', '88623211127', 'https://app.sandbox.midtrans.com/snap/v1/transacti', '201'),
+('315935848', 36000, 'bank_transfer', '2023-11-07 15:49:01', 'bca', '88623425232', 'https://app.sandbox.midtrans.com/snap/v1/transacti', '200'),
+('524139141', 108000, 'bank_transfer', '2023-11-07 15:25:56', 'bca', '88623955242', 'https://app.sandbox.midtrans.com/snap/v1/transacti', '201'),
+('588090540', 36000, 'bank_transfer', '2023-11-07 15:31:38', 'bca', '88623086011', 'https://app.sandbox.midtrans.com/snap/v1/transacti', '200'),
+('669901576', 36000, 'bank_transfer', '2023-11-01 16:27:51', 'bca', '88623745180', 'https://app.sandbox.midtrans.com/snap/v1/transacti', '201'),
+('791585696', 36000, 'bank_transfer', '2023-11-01 16:18:41', 'bca', '88623772981', 'https://app.sandbox.midtrans.com/snap/v1/transacti', '201'),
+('926118405', 36000, 'qris', '2023-11-07 16:04:59', NULL, NULL, NULL, '200');
 
 -- --------------------------------------------------------
 
@@ -104,7 +133,7 @@ CREATE TABLE `company` (
 --
 
 INSERT INTO `company` (`id_company`, `company_name`, `company_desc`, `company_address`, `company_maps`, `company_phone`, `company_phone2`, `company_fax`, `company_email`, `foto`, `foto_type`, `created`, `modified`, `created_by`, `modified_by`) VALUES
-(1, 'FUTSAL MERDEKA JAYA', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vel nibh ac nisl porttitor tempus sit amet et diam. Etiam sed leo eu elit varius venenatis sed ac arcu. Praesent malesuada gravida diam et tincidunt. Mauris quis metus eget magna efficitur scelerisque. Sed mollis porttitor erat ullamcorper sodales. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Suspendisse congue, dolor ultricies mollis molestie, libero diam auctor mauris, ultrices euismod leo justo vel enim. Etiam non rutrum arcu. Maecenas at dictum dui, sit amet gravida mauris. Vivamus sagittis neque in purus dapibus, ut pellentesque purus pulvinar. Nunc pretium porta ipsum, at iaculis felis elementum in. Duis cursus ex vitae nunc hendrerit blandit.\r\n\r\nMorbi vel est sed dui tristique elementum sed sed purus. Ut interdum nisi et felis vulputate, quis tempus diam blandit. Mauris tincidunt tellus faucibus, posuere turpis a, consectetur lacus. Nullam quis ipsum neque. Praesent sapien tellus, molestie et diam vel, cursus tristique neque. Nullam sit amet ornare odio. Ut vehicula risus id lacus blandit rutrum. Duis non molestie purus. Etiam turpis ligula, tincidunt sit amet dolor at, rutrum viverra orci. Etiam egestas urna id velit bibendum mollis.\r\n\r\nSed eu sem cursus, congue massa at, bibendum leo. Praesent cursus in nulla a egestas. Fusce aliquam leo eu enim feugiat ullamcorper. Nullam pulvinar dolor eu lacinia bibendum. Integer id ipsum cursus, luctus enim nec, fringilla dolor. Sed sit amet ipsum sit amet quam suscipit gravida vitae ut elit. Donec pellentesque non tortor vitae euismod. Praesent suscipit tempor ex ac viverra. Nunc ut sapien eu velit tempor hendrerit. Vestibulum posuere nisl massa, ornare commodo lorem sagittis ultrices. Sed eget rutrum neque, sed ullamcorper dui. Sed ultricies purus vitae lectus cursus, vestibulum faucibus quam posuere. Donec cursus vitae ipsum nec ullamcorper. Donec maximus orci finibus ante hendrerit, vitae maximus quam facilisis. Cras commodo fringilla porttitor.\r\n\r\nNam pharetra a tortor quis venenatis. Nunc lectus nibh, auctor id ante vel, interdum maximus felis. Cras libero est, mattis a sollicitudin sit amet, ultricies sed tellus. Ut augue lacus, luctus convallis enim quis, ultricies aliquet sem. Sed venenatis eros sit amet velit varius, ac rhoncus nibh sodales. Etiam sit amet efficitur est, vel pretium arcu. Morbi diam nulla, dictum quis ornare ultrices, pharetra quis mi. Nam sollicitudin pharetra congue. Praesent sed mauris at ante tincidunt blandit. Aliquam cursus ante efficitur, iaculis turpis eget, ornare quam. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nulla quis lobortis leo. Cras ut risus orci. Sed mattis purus ac libero suscipit, nec venenatis tortor semper. Aliquam sodales massa eget dignissim pharetra.\r\n\r\nNam sed enim vitae erat vulputate feugiat in tempus metus. In maximus erat risus. Donec et viverra nibh. Maecenas hendrerit, sapien id suscipit fermentum, tellus nisl sollicitudin erat, non laoreet dui ex sit amet odio. Nullam sit amet arcu sed felis tempor dapibus. Aliquam erat volutpat. Aenean malesuada a eros sed aliquet. Phasellus condimentum lobortis sapien, sit amet viverra sem iaculis venenatis. Morbi interdum nulla ut nulla fringilla commodo. In eu magna ornare libero pellentesque congue. Vestibulum ultrices congue feugiat.', 'Jl. Maju Mundur Kec. Camat Kel. Lurahan, Kab. Bupaten, Dunia Lain', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d16327777.649419477!2d108.84621849858628!3d-2.415291213289622!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2c4c07d7496404b7%3A0xe37b4de71badf485!2sIndonesia!5e0!3m2!1sen!2sid!4v1506312173230\" width=\"100%\" height=\"200\" frameborder=\"0\" style=\"border:0\" allowfullscreen></iframe>', '081241412', '0711412402', '12414', 'toko@gmail.com', 'company-profile20180414070824', '.PNG', '2017-11-09 06:45:34', NULL, 'amperakoding', 'amperakoding');
+(1, 'FUTSAL ANDA', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vel nibh ac nisl porttitor tempus sit amet et diam. Etiam sed leo eu elit varius venenatis sed ac arcu. Praesent malesuada gravida diam et tincidunt. Mauris quis metus eget magna efficitur scelerisque. Sed mollis porttitor erat ullamcorper sodales. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Suspendisse congue, dolor ultricies mollis molestie, libero diam auctor mauris, ultrices euismod leo justo vel enim. Etiam non rutrum arcu. Maecenas at dictum dui, sit amet gravida mauris. Vivamus sagittis neque in purus dapibus, ut pellentesque purus pulvinar. Nunc pretium porta ipsum, at iaculis felis elementum in. Duis cursus ex vitae nunc hendrerit blandit.\r\n\r\nMorbi vel est sed dui tristique elementum sed sed purus. Ut interdum nisi et felis vulputate, quis tempus diam blandit. Mauris tincidunt tellus faucibus, posuere turpis a, consectetur lacus. Nullam quis ipsum neque. Praesent sapien tellus, molestie et diam vel, cursus tristique neque. Nullam sit amet ornare odio. Ut vehicula risus id lacus blandit rutrum. Duis non molestie purus. Etiam turpis ligula, tincidunt sit amet dolor at, rutrum viverra orci. Etiam egestas urna id velit bibendum mollis.\r\n\r\nSed eu sem cursus, congue massa at, bibendum leo. Praesent cursus in nulla a egestas. Fusce aliquam leo eu enim feugiat ullamcorper. Nullam pulvinar dolor eu lacinia bibendum. Integer id ipsum cursus, luctus enim nec, fringilla dolor. Sed sit amet ipsum sit amet quam suscipit gravida vitae ut elit. Donec pellentesque non tortor vitae euismod. Praesent suscipit tempor ex ac viverra. Nunc ut sapien eu velit tempor hendrerit. Vestibulum posuere nisl massa, ornare commodo lorem sagittis ultrices. Sed eget rutrum neque, sed ullamcorper dui. Sed ultricies purus vitae lectus cursus, vestibulum faucibus quam posuere. Donec cursus vitae ipsum nec ullamcorper. Donec maximus orci finibus ante hendrerit, vitae maximus quam facilisis. Cras commodo fringilla porttitor.\r\n\r\nNam pharetra a tortor quis venenatis. Nunc lectus nibh, auctor id ante vel, interdum maximus felis. Cras libero est, mattis a sollicitudin sit amet, ultricies sed tellus. Ut augue lacus, luctus convallis enim quis, ultricies aliquet sem. Sed venenatis eros sit amet velit varius, ac rhoncus nibh sodales. Etiam sit amet efficitur est, vel pretium arcu. Morbi diam nulla, dictum quis ornare ultrices, pharetra quis mi. Nam sollicitudin pharetra congue. Praesent sed mauris at ante tincidunt blandit. Aliquam cursus ante efficitur, iaculis turpis eget, ornare quam. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nulla quis lobortis leo. Cras ut risus orci. Sed mattis purus ac libero suscipit, nec venenatis tortor semper. Aliquam sodales massa eget dignissim pharetra.\r\n\r\nNam sed enim vitae erat vulputate feugiat in tempus metus. In maximus erat risus. Donec et viverra nibh. Maecenas hendrerit, sapien id suscipit fermentum, tellus nisl sollicitudin erat, non laoreet dui ex sit amet odio. Nullam sit amet arcu sed felis tempor dapibus. Aliquam erat volutpat. Aenean malesuada a eros sed aliquet. Phasellus condimentum lobortis sapien, sit amet viverra sem iaculis venenatis. Morbi interdum nulla ut nulla fringilla commodo. In eu magna ornare libero pellentesque congue. Vestibulum ultrices congue feugiat.', 'Jl. Maju Mundur Kec. Camat Kel. Lurahan, Kab. Bupaten, Dunia Lain', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d16327777.649419477!2d108.84621849858628!3d-2.415291213289622!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2c4c07d7496404b7%3A0xe37b4de71badf485!2sIndonesia!5e0!3m2!1sen!2sid!4v1506312173230\" width=\"100%\" height=\"200\" frameborder=\"0\" style=\"border:0\" allowfullscreen></iframe>', '081241412', '0711412402', '12414', 'toko@gmail.com', 'company-profile20180414070824', '.PNG', '2017-11-09 06:45:34', NULL, 'amperakoding', 'superadmin');
 
 -- --------------------------------------------------------
 
@@ -114,15 +143,16 @@ INSERT INTO `company` (`id_company`, `company_name`, `company_desc`, `company_ad
 
 CREATE TABLE `diskon` (
   `id` int(11) NOT NULL,
-  `harga` int(11) NOT NULL
+  `harga` int(11) NOT NULL,
+  `status` int(12) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `diskon`
 --
 
-INSERT INTO `diskon` (`id`, `harga`) VALUES
-(1, 50000);
+INSERT INTO `diskon` (`id`, `harga`, `status`) VALUES
+(1, 20, 1);
 
 -- --------------------------------------------------------
 
@@ -154,7 +184,8 @@ INSERT INTO `event` (`id_event`, `nama_event`, `slug_event`, `deskripsi`, `kateg
 (4, 'Where does it come from?', 'where-does-it-come-from', '<p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of \"de Finibus Bonorum et Malorum\" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", comes from a line in section 1.10.32.</p>\r\n<p>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from \"de Finibus Bonorum et Malorum\" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</p>\r\n<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>', 1, 'where-does-it-come-from20180723083441', '.jpg', '2018-04-02 21:14:39', 'amperakoding', '2021-05-17 19:58:08', 'amperakoding'),
 (5, 'Where does it come froms?', 'where-does-it-come-froms', '<p>What is Lorem Ipsum?<br>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\r\n<p>Why do we use it?<br>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>\r\n<p>Where does it come from?<br>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of \"de Finibus Bonorum et Malorum\" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", comes from a line in section 1.10.32.</p>\r\n<p>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from \"de Finibus Bonorum et Malorum\" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</p>', 1, 'where-does-it-come-froms20180723083339', '.jpg', '2018-04-03 10:03:54', 'amperakoding', '2021-05-17 19:58:08', 'amperakoding'),
 (6, 'Aliquam ullamcorper', 'aliquam-ullamcorper', '<p>Aliquam ullamcorper magna consectetur augue laoreet luctus. Duis id nisi eleifend, vestibulum justo eget, scelerisque purus. Pellentesque non risus nec eros ultricies euismod. Donec ullamcorper auctor diam ut fermentum. Maecenas mollis neque magna. Pellentesque blandit arcu mi, vel consequat orci dapibus vel. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Phasellus rutrum, risus vitae venenatis efficitur, arcu metus blandit erat, quis pharetra neque leo non quam. Vestibulum imperdiet eleifend rhoncus. Nunc condimentum tellus vel ullamcorper iaculis. Vivamus vitae lorem sem.</p>\r\n<p>Donec lorem diam, rhoncus at tempus eget, dignissim quis nulla. Donec consequat malesuada lacinia. Mauris eget ipsum eget mauris tristique lobortis vel vel turpis. Pellentesque accumsan metus nisi, non molestie diam hendrerit eu. Sed eget lacinia elit. Nulla lobortis diam sed nunc malesuada cursus. Mauris ac maximus tellus.</p>', 2, 'aliquam-ullamcorper20180723083358', '.png', '2018-04-03 11:08:48', 'amperakoding', '2021-05-17 19:58:08', 'amperakoding'),
-(7, 'In fermentum scelerisqu', 'in-fermentum-scelerisqu', '<p>In fermentum scelerisque neque. Integer fermentum semper lacinia. Donec porttitor accumsan sem, eget fringilla nisl blandit a. Nam pulvinar faucibus velit, eget vestibulum erat aliquet ac. Maecenas imperdiet felis vitae orci laoreet fermentum. Fusce dui neque, volutpat ac fermentum quis, maximus id diam. Nullam eros urna, tempus tempor vehicula sit amet, sollicitudin quis massa. Mauris metus ex, eleifend nec aliquam a, ullamcorper et leo. Sed convallis, est vitae tincidunt ultrices, orci diam hendrerit magna, ut molestie dui nisl non quam.</p>\r\n<p>Pellentesque in egestas tellus, eget cursus odio. Morbi mollis diam turpis, id luctus leo consequat eu. Integer felis neque, iaculis eget vulputate et, congue pharetra elit. Morbi lacinia lacus vel elit suscipit euismod. Ut tellus leo, sodales ac suscipit in, semper eget sem. Curabitur ultrices, sem id dapibus semper, lectus erat vehicula magna, eu accumsan tellus leo at orci. Fusce rutrum tincidunt tristique. Suspendisse ac cursus libero. Donec aliquet accumsan ex in dignissim. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed vel dignissim velit. Vestibulum mattis malesuada euismod. Praesent in vehicula dui, sit amet fringilla leo. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec imperdiet hendrerit neque, at ultricies neque eleifend in.</p>\r\n<p>Sed rutrum egestas diam, vitae sodales odio vulputate id. Phasellus felis risus, varius eget dolor ac, fringilla dapibus risus. Pellentesque ante nulla, egestas ac fermentum suscipit, aliquam ac eros. Mauris elementum justo nec leo imperdiet hendrerit. Praesent ut augue sit amet massa sollicitudin maximus quis eget augue. Etiam malesuada dictum sem, ut ullamcorper diam mattis ut. Morbi non imperdiet ante, ac fermentum justo. Nulla congue magna vel lectus elementum laoreet. Suspendisse ante ipsum, eleifend vel condimentum eu, varius non dolor.</p>', 1, 'in-fermentum-scelerisqu20180413030957', '.jpeg', '2018-04-03 11:11:51', 'amperakoding', '2021-05-17 19:58:08', 'amperakoding');
+(7, 'In fermentum scelerisqu', 'in-fermentum-scelerisqu', '<p>In fermentum scelerisque neque. Integer fermentum semper lacinia. Donec porttitor accumsan sem, eget fringilla nisl blandit a. Nam pulvinar faucibus velit, eget vestibulum erat aliquet ac. Maecenas imperdiet felis vitae orci laoreet fermentum. Fusce dui neque, volutpat ac fermentum quis, maximus id diam. Nullam eros urna, tempus tempor vehicula sit amet, sollicitudin quis massa. Mauris metus ex, eleifend nec aliquam a, ullamcorper et leo. Sed convallis, est vitae tincidunt ultrices, orci diam hendrerit magna, ut molestie dui nisl non quam.</p>\r\n<p>Pellentesque in egestas tellus, eget cursus odio. Morbi mollis diam turpis, id luctus leo consequat eu. Integer felis neque, iaculis eget vulputate et, congue pharetra elit. Morbi lacinia lacus vel elit suscipit euismod. Ut tellus leo, sodales ac suscipit in, semper eget sem. Curabitur ultrices, sem id dapibus semper, lectus erat vehicula magna, eu accumsan tellus leo at orci. Fusce rutrum tincidunt tristique. Suspendisse ac cursus libero. Donec aliquet accumsan ex in dignissim. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed vel dignissim velit. Vestibulum mattis malesuada euismod. Praesent in vehicula dui, sit amet fringilla leo. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec imperdiet hendrerit neque, at ultricies neque eleifend in.</p>\r\n<p>Sed rutrum egestas diam, vitae sodales odio vulputate id. Phasellus felis risus, varius eget dolor ac, fringilla dapibus risus. Pellentesque ante nulla, egestas ac fermentum suscipit, aliquam ac eros. Mauris elementum justo nec leo imperdiet hendrerit. Praesent ut augue sit amet massa sollicitudin maximus quis eget augue. Etiam malesuada dictum sem, ut ullamcorper diam mattis ut. Morbi non imperdiet ante, ac fermentum justo. Nulla congue magna vel lectus elementum laoreet. Suspendisse ante ipsum, eleifend vel condimentum eu, varius non dolor.</p>', 1, 'in-fermentum-scelerisqu20180413030957', '.jpeg', '2018-04-03 11:11:51', 'amperakoding', '2021-05-17 19:58:08', 'amperakoding'),
+(8, 'Grand Opening Fabel Sport', 'grand-opening-fabel-sport', '<p>GRAND OPENING !!!<br>RABU, 19 OKTOBER 2023<br>.<br>NEW FABEL SPORT <br>JL JAMBANGAN KEBON AGUNG SUDAH DI BUKA !!!<br>KITA OPEN MULAI BESOK<br>???? JAM 09.00 - 23.00<br>.<br>BOOKING SEKARANG, AJAK TEAM KALIAN LATIHAN FUTSAL DAN BADMINTON DI LAPANGAN TERBARU KITA..<br>YUK DAFTAR JADI MEMBER </p>', 3, 'grand-opening-fabel-sport20231018205201', '.png', '2023-10-18 20:52:01', 'superadmin', '2023-10-18 21:09:59', 'superadmin');
 
 -- --------------------------------------------------------
 
@@ -174,21 +205,6 @@ CREATE TABLE `foto` (
   `modified_at` datetime DEFAULT NULL ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `foto`
---
-
-INSERT INTO `foto` (`id_foto`, `album_id`, `nama_foto`, `slug_foto`, `foto`, `created_by`, `created_at`, `modified_by`, `modified_at`) VALUES
-(1, 1, 'Testing Saja Cuis', 'testing-saja-cuis', 'testing-saja-cuis20180411025319.jpg', 'amperakoding', '2018-04-11 07:41:29', 'amperakoding', '2021-05-17 19:57:13'),
-(2, 4, 'Foto Lagi Coba', 'foto-lagi-coba', 'foto-lagi-coba20180411024503.jpg', 'amperakoding', '2018-04-11 07:45:03', 'amperakoding', '2021-05-17 19:58:17'),
-(3, 3, 'Foto Coba Lagi Saja', 'foto-coba-lagi-saja', 'foto-coba-lagi-saja20180411024712.jpg', 'amperakoding', '2018-04-11 07:47:12', 'amperakoding', '2021-05-17 19:58:17'),
-(4, 1, 'Teasdasd', 'teasdasd', 'teasdasd20180414101405.png', 'amperakoding', '2018-04-14 15:13:17', 'amperakoding', '2021-05-17 19:57:13'),
-(5, 3, 'Agains', 'agains', 'agains20180414101428.jpg', 'amperakoding', '2018-04-14 15:14:29', 'amperakoding', '2021-05-17 19:58:17'),
-(6, 4, 'Waasd', 'waasd', 'waasd20180414101515.jpg', 'amperakoding', '2018-04-14 15:15:15', 'amperakoding', '2021-05-17 19:58:17'),
-(7, 1, 'ASczxc', 'asczxc', 'asczxc20180414101545.jpg', 'amperakoding', '2018-04-14 15:15:45', 'amperakoding', '2021-05-17 19:58:17'),
-(8, 1, 'ASXzc', 'asxzc', 'asxzc20180414101604.jpg', 'amperakoding', '2018-04-14 15:16:05', 'amperakoding', '2021-05-17 19:58:17'),
-(9, 2, 'ASczxcacasc', 'asczxcacasc', 'asczxcacasc20180414101613.png', 'amperakoding', '2018-04-14 15:16:13', 'amperakoding', '2021-05-17 19:58:17');
-
 -- --------------------------------------------------------
 
 --
@@ -206,25 +222,30 @@ CREATE TABLE `jam` (
 --
 
 INSERT INTO `jam` (`id`, `jam`, `is_available`) VALUES
-(1, '06:00:00', 1),
-(2, '07:00:00', 1),
-(3, '08:00:00', 1),
-(4, '09:00:00', 1),
-(5, '10:00:00', 1),
-(6, '11:00:00', 1),
-(7, '12:00:00', 1),
-(8, '13:00:00', 1),
-(9, '14:00:00', 1),
-(10, '15:00:00', 1),
-(11, '16:00:00', 1),
-(12, '17:00:00', 1),
-(13, '18:00:00', 1),
-(14, '19:00:00', 1),
-(15, '20:00:00', 1),
-(16, '21:00:00', 1),
-(17, '22:00:00', 1),
-(18, '23:00:00', 1),
-(19, '24:00:00', 1);
+(1, '01:00:00', 0),
+(2, '02:00:00', 0),
+(3, '03:00:00', 0),
+(4, '04:00:00', 0),
+(5, '05:00:00', 0),
+(6, '06:00:00', 0),
+(7, '07:00:00', 0),
+(8, '08:00:00', 1),
+(9, '09:00:00', 1),
+(10, '10:00:00', 1),
+(11, '11:00:00', 1),
+(12, '12:00:00', 1),
+(13, '13:00:00', 1),
+(14, '14:00:00', 1),
+(15, '15:00:00', 1),
+(16, '16:00:00', 1),
+(17, '17:00:00', 1),
+(18, '18:00:00', 1),
+(19, '19:00:00', 1),
+(20, '20:00:00', 1),
+(21, '21:00:00', 1),
+(22, '22:00:00', 1),
+(23, '23:00:00', 1),
+(24, '24:00:00', 1);
 
 -- --------------------------------------------------------
 
@@ -248,7 +269,8 @@ CREATE TABLE `kategori` (
 
 INSERT INTO `kategori` (`id_kategori`, `nama_kategori`, `slug_kat`, `created_by`, `created_at`, `modified_by`, `modified_at`) VALUES
 (1, 'Turnamen', 'turnamen', 'amperakoding', '2018-07-23 08:38:39', 'amperakoding', '2021-05-17 19:58:57'),
-(2, 'Kerja Sama', 'kerja-sama', 'amperakoding', '2018-07-23 08:38:39', 'amperakoding', '2021-05-17 19:58:57');
+(2, 'Kerja Sama', 'kerja-sama', 'amperakoding', '2018-07-23 08:38:39', 'amperakoding', '2021-05-17 19:58:57'),
+(3, 'Corporate', 'corporate', 'administrator', '2023-10-15 09:46:06', '', NULL);
 
 -- --------------------------------------------------------
 
@@ -816,12 +838,10 @@ CREATE TABLE `lapangan` (
 --
 
 INSERT INTO `lapangan` (`id_lapangan`, `nama_lapangan`, `harga`, `foto`, `created_by`, `created_at`, `modified_by`, `modified_at`) VALUES
-(1, 'Lapangan A', 100000, 'lapangan-a20180610164236.jpg', 'amperakoding', '2018-06-10 15:37:43', 'amperakoding', '2021-05-17 19:59:32'),
-(2, 'Lapangan B', 150000, 'lapangan-b20180610164255.jpg', 'amperakoding', '2018-06-10 16:02:44', 'amperakoding', '2021-05-17 19:59:32'),
-(3, 'Lapangan C', 80000, 'lapangan-a20180610164250.jpg', 'amperakoding', '2018-06-10 16:16:17', 'amperakoding', '2021-05-17 19:59:32'),
-(4, 'Lapangan D', 100000, 'lapangan-b20180610164305.jpg', 'amperakoding', '2018-06-10 16:25:05', 'amperakoding', '2021-05-17 19:59:32'),
-(5, 'Lapangan E', 200000, 'lapangan-c20180610164320.jpg', 'amperakoding', '2018-06-10 16:38:10', 'amperakoding', '2021-05-17 19:59:32'),
-(6, 'Lapangan F', 150000, 'lapangan-c20180610164329.jpg', 'amperakoding', '2018-06-10 16:54:28', 'amperakoding', '2021-05-17 19:59:32');
+(9, 'Lapangan Futsal 1', 150000, 'lapangan-futsal-120231018204440.jpg', 'superadmin', '2023-10-18 20:44:40', '', NULL),
+(10, 'Lapangan Futsal 2', 150000, 'lapangan-futsal-220231018204522.jpg', 'superadmin', '2023-10-18 20:45:22', '', NULL),
+(11, 'Lapangan Badminton 1', 45000, 'lapangan-badminton-120231018204634.jpg', 'superadmin', '2023-10-18 20:46:34', '', NULL),
+(12, 'Lapangan Badminton 2', 45000, 'lapangan-badminton-220231018204816.jpg', 'superadmin', '2023-10-18 20:48:16', '', NULL);
 
 -- --------------------------------------------------------
 
@@ -835,6 +855,13 @@ CREATE TABLE `login_attempts` (
   `login` varchar(100) CHARACTER SET utf8 NOT NULL,
   `time` int(10) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `login_attempts`
+--
+
+INSERT INTO `login_attempts` (`id`, `ip_address`, `login`, `time`) VALUES
+(17, '::1', 'admin@admin.com', 1699360101);
 
 -- --------------------------------------------------------
 
@@ -937,9 +964,9 @@ CREATE TABLE `slider` (
 --
 
 INSERT INTO `slider` (`id_slider`, `no_urut`, `nama_slider`, `link`, `foto`, `foto_type`, `foto_size`, `created_at`, `created_by`, `modified_at`, `modified_by`) VALUES
-(1, 1, 'Slider 1', 'http://www.yahoo.com ', '120180610164516', '.jpg', 203, '2017-11-25 08:05:03', 'amperakoding', '2021-05-17 20:00:16', 'amperakoding'),
-(2, 2, 'Slider 2', 'http://www.google.com ', '220180610164521', '.jpg', 833, '2017-11-25 08:05:03', 'amperakoding', '2021-05-17 20:00:16', 'amperakoding'),
-(3, 3, 'XXZ', 'http://www.facebook.com', '320180610164527', '.jpg', 167, '2017-11-25 08:05:03', 'amperakoding', '2021-05-17 20:00:16', 'amperakoding');
+(3, 3, 'XXZ', 'http://www.facebook.com', '320180610164527', '.jpg', 167, '2017-11-25 08:05:03', 'amperakoding', '2023-10-18 20:39:06', 'superadmin'),
+(4, 1, 'Banner_Diskon', 'http://www.google.com ', '420231018202549', '.PNG', 0, '2023-10-18 20:25:49', 'superadmin', '2023-10-18 20:39:02', 'superadmin'),
+(5, 1, 'Banner_Fabel_Sport', 'http://www.google.com ', '520231018203755', '.jpg', 0, '2023-10-18 20:37:55', 'superadmin', '2023-10-18 20:39:14', 'superadmin');
 
 -- --------------------------------------------------------
 
@@ -963,6 +990,7 @@ CREATE TABLE `subscriber` (
 CREATE TABLE `transaksi` (
   `id_trans` int(11) NOT NULL,
   `id_invoice` char(15) NOT NULL,
+  `order_id` varchar(100) NOT NULL,
   `user_id` int(11) NOT NULL,
   `subtotal` int(11) NOT NULL,
   `diskon` int(11) NOT NULL,
@@ -970,6 +998,7 @@ CREATE TABLE `transaksi` (
   `deadline` datetime NOT NULL,
   `catatan` text NOT NULL,
   `status` int(11) NOT NULL,
+  `status_midtrans` varchar(50) NOT NULL,
   `created_date` date NOT NULL,
   `created_time` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -978,15 +1007,13 @@ CREATE TABLE `transaksi` (
 -- Dumping data for table `transaksi`
 --
 
-INSERT INTO `transaksi` (`id_trans`, `id_invoice`, `user_id`, `subtotal`, `diskon`, `grand_total`, `deadline`, `catatan`, `status`, `created_date`, `created_time`) VALUES
-(1, 'J-210517-0001', 3, 100000, 0, 100000, '2021-05-17 21:03:57', '', 2, '2021-05-17', '08:03:19'),
-(2, 'J-210517-0002', 4, 260000, 50000, 210000, '2021-05-17 21:10:50', 'takada', 2, '2021-05-17', '08:09:54'),
-(3, 'J-210516-0003', 3, 300000, 0, 300000, '2021-05-16 21:20:17', '', 2, '2021-05-16', '08:20:09'),
-(4, 'J-210408-0001', 3, 330000, 0, 330000, '2021-04-08 21:21:53', '', 2, '2021-04-08', '08:21:35'),
-(5, 'J-210408-0002', 3, 150000, 0, 150000, '2021-04-08 21:22:35', '', 2, '2021-04-08', '08:22:29'),
-(6, 'J-210408-0003', 3, 300000, 0, 300000, '2021-04-08 21:23:15', '', 2, '2021-04-08', '08:23:09'),
-(7, 'J-210410-0004', 3, 300000, 0, 300000, '2021-04-10 21:24:07', '', 2, '2021-04-10', '08:23:52'),
-(8, 'J-210517-0003', 3, 150000, 0, 150000, '2021-05-17 21:23:05', '', 1, '2021-05-17', '08:23:01');
+INSERT INTO `transaksi` (`id_trans`, `id_invoice`, `order_id`, `user_id`, `subtotal`, `diskon`, `grand_total`, `deadline`, `catatan`, `status`, `status_midtrans`, `created_date`, `created_time`) VALUES
+(62, 'J-231101-0002', '', 4, 0, 0, 89000, '0000-00-00 00:00:00', '', 1, '200', '2023-11-01', '04:18:32'),
+(63, 'J-231101-0003', '', 4, 0, 0, 90000, '0000-00-00 00:00:00', '', 1, '200', '2023-11-07', '07:45:09'),
+(64, 'J-231101-0004', '', 4, 0, 0, 20000, '0000-00-00 00:00:00', '', 1, '201', '2023-11-07', '08:12:49'),
+(65, 'J-231107-0005', '', 4, 0, 0, 36000, '0000-00-00 00:00:00', '', 1, '200', '2023-11-07', '03:29:14'),
+(66, 'J-231107-0006', '', 4, 0, 0, 36000, '0000-00-00 00:00:00', '', 1, '200', '2023-11-07', '03:47:27'),
+(67, 'J-231107-0007', '', 4, 0, 0, 36000, '0000-00-00 00:00:00', '', 1, '200', '2023-11-07', '04:04:51');
 
 -- --------------------------------------------------------
 
@@ -1012,17 +1039,12 @@ CREATE TABLE `transaksi_detail` (
 --
 
 INSERT INTO `transaksi_detail` (`id_transdet`, `trans_id`, `lapangan_id`, `tanggal`, `jam_mulai`, `durasi`, `jam_selesai`, `harga_jual`, `total`, `created_at`) VALUES
-(1, 1, 1, '2021-05-18', '07:00:00', 1, '08:00:00', 100000, 100000, '2021-05-17 20:03:19'),
-(2, 2, 1, '2021-05-18', '08:00:00', 1, '09:00:00', 100000, 100000, '2021-05-17 20:09:54'),
-(3, 2, 3, '2021-05-17', '10:00:00', 2, '12:00:00', 80000, 160000, '2021-05-17 20:09:55'),
-(4, 3, 4, '2021-05-16', '13:00:00', 3, '16:00:00', 100000, 300000, '2021-05-16 20:20:09'),
-(5, 4, 1, '2021-04-09', '22:00:00', 1, '23:00:00', 100000, 100000, '2021-04-08 20:21:35'),
-(6, 4, 2, '2021-04-11', '21:00:00', 1, '22:00:00', 150000, 150000, '2021-04-08 20:21:36'),
-(7, 4, 3, '2021-04-13', '21:00:00', 1, '22:00:00', 80000, 80000, '2021-04-08 20:21:36'),
-(8, 5, 6, '2021-04-08', '10:00:00', 1, '11:00:00', 150000, 150000, '2021-04-08 20:22:29'),
-(9, 6, 2, '2021-04-10', '10:00:00', 2, '12:00:00', 150000, 300000, '2021-04-08 20:23:09'),
-(10, 7, 2, '2021-04-10', '08:00:00', 2, '10:00:00', 150000, 300000, '2021-04-10 20:23:52'),
-(11, 8, 2, '2021-05-18', '10:00:00', 1, '11:00:00', 150000, 150000, '2021-05-17 20:23:01');
+(78, 62, 12, '0000-00-00', NULL, 0, NULL, 45000, 45000, '2023-11-01 16:18:32'),
+(79, 63, 12, '0000-00-00', NULL, 0, NULL, 45000, 45000, '2023-11-01 19:45:09'),
+(82, 64, 12, '0000-00-00', NULL, 0, NULL, 45000, 45000, '2023-11-07 15:25:03'),
+(83, 65, 12, '0000-00-00', NULL, 0, NULL, 45000, 45000, '2023-11-07 15:29:14'),
+(84, 66, 12, '2023-11-07', '20:00:00', 1, '21:00:00', 45000, 45000, '2023-11-07 15:47:27'),
+(85, 67, 11, '2023-11-07', '18:00:00', 1, '19:00:00', 45000, 45000, '2023-11-07 16:04:51');
 
 -- --------------------------------------------------------
 
@@ -1060,10 +1082,12 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `username`, `password`, `email`, `phone`, `provinsi`, `kota`, `address`, `usertype`, `active`, `photo`, `photo_type`, `ip_address`, `salt`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `last_login`, `created_on`, `modified`) VALUES
-(1, 'SuperAdmin', 'superadmin', '$2y$08$TWMdtdacqPE5yEz9n1LwFuhEVmiDTTsupl12M45tCQihzF1tu2N/6', 'superadmin@gmail.com', '081228289766', 6, 151, 'asdasdasdsa', 1, 1, 'mazmi20180205001726', '.jpg', '::1', NULL, 'c6ad242e6fd3de875568c7de5ba23af4a24137ef', 'tHafW45duPzrU3oWR0AVuO48b26088a3cd65edc4', 1621246176, NULL, 1621257748, 2147483647, '2021-05-17 20:22:28'),
-(2, 'Admin', 'administrator', '$2y$08$rnCngWyQhFLdVJijctNDKuwJZ8o9VfcSsZ9IM9XN71ugxIpQFeCWe', 'administrator@gmail.com', '08124124', NULL, NULL, 'kaldjlas', 2, 1, 'admin20180424102408', '.jpeg', '::1', NULL, NULL, NULL, NULL, NULL, 1621252084, 1524551716, '2021-05-17 18:48:04'),
-(3, 'Batistuta', 'batistuta', '$2y$08$.5EYrM8S8Up0LcpFiEmjauyPVdWOmylLZ.MqM0zBKyDVKniwdVbYi', 'batistuta@gmail.com', '0812412414', 33, 327, 'Jl. Skdlajsdlasjkdl', 4, 1, NULL, NULL, '127.0.0.1', NULL, NULL, NULL, NULL, NULL, 1621257779, 1528634033, '2021-05-17 20:22:59'),
-(4, 'User Premium', 'userpremium', '$2y$08$Wv3MA.DnwTNzBeF62o9neuSXeVdIA/bjlxOzSxtD6DtgStEBn//s.', 'userpremium@gmail.com', '0812412412', 3, 106, 'kaljdklasjdkl', 3, 1, NULL, NULL, '::1', NULL, NULL, NULL, NULL, NULL, 1621252638, 1531807819, '2021-05-17 18:57:18');
+(1, 'SuperAdmin', 'suadmin', '$2a$12$Xk5TDqCYZ77HSVJEtAF9F.IVzddGcvd8IuMKKNDXjBu/CI2cMs6Gq', 'superadmin@gmail.com', '081228289766', 6, 151, 'asdasdasdsa', 1, 1, 'mazmi20180205001726', '.jpg', '::1', NULL, 'c6ad242e6fd3de875568c7de5ba23af4a24137ef', 'tHafW45duPzrU3oWR0AVuO48b26088a3cd65edc4', 1621246176, NULL, 1699360153, 2147483647, '2023-11-07 19:29:13'),
+(2, 'Admin', 'admin', '$2a$12$Xk5TDqCYZ77HSVJEtAF9F.IVzddGcvd8IuMKKNDXjBu/CI2cMs6Gq', 'administrator@gmail.com', '08124124', NULL, NULL, 'kaldjlas', 2, 1, 'admin20180424102408', '.jpeg', '::1', NULL, NULL, NULL, NULL, NULL, 1698831092, 1524551716, '2023-11-01 16:31:32'),
+(3, 'Batistuta', 'batistuta', '$2a$12$Xk5TDqCYZ77HSVJEtAF9F.IVzddGcvd8IuMKKNDXjBu/CI2cMs6Gq', 'batistuta@gmail.com', '0812412414', 33, 327, 'Jl. Skdlajsdlasjkdl', 3, 1, NULL, NULL, '127.0.0.1', NULL, NULL, NULL, NULL, NULL, 1697647915, 1528634033, '2023-10-25 09:29:38'),
+(4, 'User Premium', 'userpremium', '$2a$12$Xk5TDqCYZ77HSVJEtAF9F.IVzddGcvd8IuMKKNDXjBu/CI2cMs6Gq', 'prem@mail.com', '0812412412', 3, 106, 'kaljdklasjdkl', 3, 1, NULL, NULL, '::1', NULL, NULL, NULL, NULL, NULL, 1699359940, 1531807819, '2023-11-07 19:25:40'),
+(7, 'Gilar Aji Pangestu', 'gilarajip', '$2a$12$Xk5TDqCYZ77HSVJEtAF9F.IVzddGcvd8IuMKKNDXjBu/CI2cMs6Gq', 'user@mail.com', '085540545586', NULL, NULL, 'Solo', 2, 1, NULL, NULL, '::1', NULL, NULL, NULL, NULL, NULL, NULL, 1696229305, '2023-10-25 09:29:57'),
+(8, 'Kasir Saja', 'kasir@gmail.com', '$2y$08$8Vb43CLu10ty/D5r9GaTTuKDPqj8QYc4RZ/FwZ2jpwXvBbSqVYoH.', 'kasir@gmail.com', '085728013467', NULL, NULL, 'Solo', 5, 1, 'kasir-saja20231015195416', '.jpg', '::1', NULL, NULL, NULL, NULL, NULL, 1697985348, 1697374456, '2023-10-22 21:35:48');
 
 -- --------------------------------------------------------
 
@@ -1084,7 +1108,8 @@ INSERT INTO `users_group` (`id_group`, `name_group`) VALUES
 (1, 'SuperAdmin'),
 (2, 'Administrator'),
 (3, 'Member Premium'),
-(4, 'Member Biasa');
+(4, 'Member Biasa'),
+(5, 'Kasir');
 
 --
 -- Indexes for dumped tables
@@ -1101,6 +1126,12 @@ ALTER TABLE `album`
 --
 ALTER TABLE `bank`
   ADD PRIMARY KEY (`id_bank`);
+
+--
+-- Indexes for table `checkout_midtrans`
+--
+ALTER TABLE `checkout_midtrans`
+  ADD PRIMARY KEY (`order_id`);
 
 --
 -- Indexes for table `company`
@@ -1210,7 +1241,7 @@ ALTER TABLE `users_group`
 -- AUTO_INCREMENT for table `album`
 --
 ALTER TABLE `album`
-  MODIFY `id_album` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_album` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `bank`
@@ -1228,7 +1259,7 @@ ALTER TABLE `company`
 -- AUTO_INCREMENT for table `event`
 --
 ALTER TABLE `event`
-  MODIFY `id_event` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_event` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `foto`
@@ -1240,13 +1271,13 @@ ALTER TABLE `foto`
 -- AUTO_INCREMENT for table `jam`
 --
 ALTER TABLE `jam`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `kategori`
 --
 ALTER TABLE `kategori`
-  MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `kontak`
@@ -1258,13 +1289,13 @@ ALTER TABLE `kontak`
 -- AUTO_INCREMENT for table `lapangan`
 --
 ALTER TABLE `lapangan`
-  MODIFY `id_lapangan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_lapangan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `login_attempts`
 --
 ALTER TABLE `login_attempts`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `page`
@@ -1276,7 +1307,7 @@ ALTER TABLE `page`
 -- AUTO_INCREMENT for table `slider`
 --
 ALTER TABLE `slider`
-  MODIFY `id_slider` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_slider` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `subscriber`
@@ -1288,25 +1319,25 @@ ALTER TABLE `subscriber`
 -- AUTO_INCREMENT for table `transaksi`
 --
 ALTER TABLE `transaksi`
-  MODIFY `id_trans` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_trans` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
 
 --
 -- AUTO_INCREMENT for table `transaksi_detail`
 --
 ALTER TABLE `transaksi_detail`
-  MODIFY `id_transdet` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_transdet` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `users_group`
 --
 ALTER TABLE `users_group`
-  MODIFY `id_group` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_group` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
