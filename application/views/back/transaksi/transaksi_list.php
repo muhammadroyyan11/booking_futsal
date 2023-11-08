@@ -50,7 +50,7 @@
                           <?php   } elseif ($data->status_midtrans == '201') {?>
                             <span class="badge bg-warning">Pending</span>
                           <?php   }  else {?>
-                            <span class="badge bg-danger">Cancel</span>
+                            <span class="badge bg-danger">Cancel / Expired</span>
                           <?php   } ?>
                         </td>
                         <td style="text-align:center">
