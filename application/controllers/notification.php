@@ -35,9 +35,11 @@ class Notification extends CI_Controller {
 		$json_result = file_get_contents('php://input');
 		$result = json_decode($json_result, "true");
 
-		// if (condition) {
-		// 	# code...
-		// }
+		$params = [
+            'status_midtrans'   => $result['status_code']
+        ];
+
+        $this->db->update('transaksi', $params, array('order_id' => $result['order_id']));
 		//notification handler sample
 
 		/*

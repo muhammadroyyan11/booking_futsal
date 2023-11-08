@@ -23,7 +23,7 @@ class Dashboard extends CI_Controller
 			redirect(base_url());
 		} else {
 			$data = array(
-				'title' 						=> 'Dashboard',
+				'title' 				=> 'Dashboard',
 				'total_album' 			=> $this->Album_model->total_rows(),
 				'total_event' 			=> $this->Event_model->total_rows(),
 				'total_foto' 			=> $this->Foto_model->total_rows(),
@@ -32,7 +32,6 @@ class Dashboard extends CI_Controller
 				'total_lapangan'		=> $this->Lapangan_model->total_rows(),
 				'total_slider' 			=> $this->Slider_model->total_rows(),
 				'total_customer' 		=> $this->Ion_auth_model->total_rows_customer(),
-
 				'omset_harian' 				=> $this->Cart_model->get_omset_harian(),
 				'omset_bulanan' 			=> $this->Cart_model->get_omset_bulanan(),
 				'omset_tahunan' 			=> $this->Cart_model->get_omset_tahunan(),
